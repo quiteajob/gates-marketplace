@@ -1,0 +1,252 @@
+.loginTopBar {
+  height: 72px;
+  background: #f5f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.topBarLogo {
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 0.03em;
+  color: #123e86;
+}
+
+.topBarActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topBarActions > a {
+  color: #1f3558;
+  font-size: 14px;
+}
+
+.topBarBtn {
+  height: 38px;
+  border-radius: 10px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.topBarBtnPrimary {
+  background: #2569f6;
+  color: #fff;
+}
+
+.topBarBtnGhost {
+  background: #fff;
+  border-color: #d7deea;
+  color: #34507c;
+}
+
+.loginPage {
+  min-height: calc(100vh - 130px);
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px 24px;
+}
+
+.loginInfoPanel {
+  padding: 4px 0 0;
+}
+
+.loginPanelHead h1 {
+  margin: 0 0 14px;
+  font-size: 50px;
+  line-height: 1.08;
+  color: #0f2749;
+}
+
+.stepsRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px;
+  border-radius: 22px;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+
+.stepPill {
+  min-height: 52px;
+  border: 0;
+  border-radius: 18px;
+  color: #2c4367;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+}
+
+.stepPill small {
+  font-size: 11px;
+  color: #8b98ab;
+  font-weight: 500;
+}
+
+.stepPill.active small {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.stepPill.active {
+  background: linear-gradient(90deg, #0f5bec, #2a7fff);
+  color: #fff;
+  font-weight: 700;
+}
+
+.showcaseCard {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr;
+  gap: 10px;
+  box-shadow: none;
+  border-radius: 16px;
+}
+
+.showcaseMain,
+.showcaseSide {
+  background: #eef2f7;
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  min-height: 330px;
+}
+
+.showcaseMain h2 {
+  margin: 0 0 10px;
+  font-size: 52px;
+  line-height: 1;
+  color: #1e66ea;
+}
+
+.showcaseMain p {
+  margin: 0 0 10px;
+  color: #243b5f;
+  font-size: 18px;
+  line-height: 1.35;
+  max-width: 580px;
+}
+
+.showcaseMain p a {
+  color: #356ecf;
+}
+
+.showcaseMain ul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.6;
+  color: #1d3557;
+  font-size: 17px;
+}
+
+.showcaseSide h3 {
+  margin: 0 0 8px;
+  font-size: 31px;
+  line-height: 1.1;
+  color: #142b4d;
+}
+
+.showcaseSide p {
+  margin: 0 0 10px;
+  color: #273f63;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.mockIllustration {
+  margin-top: auto;
+  height: 190px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 30% 25%, #f3f7ff, #c5d5f4);
+}
+
+.mockIllustration.second {
+  background: radial-gradient(circle at 65% 28%, #f7f9ff, #c2d1ef);
+}
+
+.showcaseSide {
+  display: flex;
+  flex-direction: column;
+}
+
+.showcaseCard.singleRight {
+  grid-template-columns: 1.2fr 1.8fr;
+}
+
+.loginFooter {
+  height: 58px;
+  border-top: 1px solid #e2e7ef;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.loginFooter a {
+  font-size: 13px;
+  color: #4a6088;
+}
+
+@media (max-width: 1200px) {
+  .loginPanelHead h1,
+  .showcaseMain h2,
+  .showcaseSide h3 {
+    font-size: clamp(24px, 3vw, 40px);
+  }
+  .showcaseMain p,
+  .showcaseMain ul,
+  .showcaseSide p,
+  .stepPill {
+    font-size: clamp(13px, 1.5vw, 18px);
+  }
+}
+
+@media (max-width: 980px) {
+  .showcaseCard {
+    grid-template-columns: 1fr;
+  }
+  .showcaseCard.singleRight {
+    grid-template-columns: 1fr;
+  }
+  .showcaseMain,
+  .showcaseSide {
+    min-height: auto;
+  }
+  .stepsRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .loginTopBar {
+    height: auto;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .topBarActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stepsRow {
+    grid-template-columns: 1fr;
+  }
+}

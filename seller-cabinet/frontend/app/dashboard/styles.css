@@ -1,0 +1,680 @@
+.dashboardPage {
+  min-height: 100vh;
+  padding: 12px 16px 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.dashboardHeader {
+  padding: 0;
+  background: #fff;
+  overflow: visible;
+  position: relative;
+  z-index: 25;
+}
+
+.headerTop,
+.headerRight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.headerBrand {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #123e86;
+}
+
+.headerRight {
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.headerNav {
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 46px;
+}
+
+.navTab,
+.brandToggle {
+  height: 34px;
+  border-radius: 8px;
+  border: 0;
+  background: #fff;
+  padding: 0 12px;
+  color: #4b5563;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+a.navTab {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.navTab:hover {
+  color: #1f3f82;
+  background: #eef4ff;
+}
+
+.navTab.active {
+  color: #1f3f82;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: inset 0 -2px 0 0 #2563eb;
+}
+
+.productsMenuWrap,
+.dropdownWrap {
+  position: relative;
+}
+
+.megaMenu {
+  position: absolute;
+  left: -80px;
+  top: calc(100% + 2px);
+  width: min(980px, 94vw);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 14px;
+  padding: 18px;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: 0.2s ease;
+  z-index: 30;
+}
+
+.megaMenu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.megaMenu.megaMenuNarrow {
+  grid-template-columns: 1fr;
+  width: min(320px, 94vw);
+  left: 0;
+}
+
+.headerNavMegaCluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.megaMenu h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.megaMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.megaMenu button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.megaMenu .megaMenuLink {
+  display: block;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.megaMenu .megaMenuLink:hover {
+  color: var(--primary);
+}
+
+.iconBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.iconBtn:hover {
+  background: #f8faff;
+}
+
+.iconBtn::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #fff;
+  background: #111827;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.18s ease;
+}
+
+.iconBtn:hover::after {
+  opacity: 1;
+}
+
+.profileIconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #374151;
+}
+
+.profileIconSvg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.badge {
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+  display: grid;
+  place-items: center;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 210px;
+  padding: 8px;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: 0.2s ease;
+  z-index: 40;
+}
+
+.dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown button {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.profileTop {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+}
+
+.profileTop span {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.profileDropdown hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 6px 0;
+}
+
+.dropdown.profileDropdown {
+  top: 100%;
+  margin-top: 4px;
+  min-width: 240px;
+  z-index: 60;
+}
+
+.dropdown.profileDropdown.open::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 12px;
+}
+
+.chartSection {
+  width: 100%;
+}
+
+.chartCard {
+  padding: 12px 16px;
+}
+
+.chartCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.chartCardHeader h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.chartHeaderSettings {
+  position: relative;
+}
+
+.chartSettingsTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.chartSettingsTrigger:hover {
+  border-color: #c5d4e8;
+  background: #fafbff;
+}
+
+.chartChevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #6b7280;
+  border-bottom: 2px solid #6b7280;
+  display: inline-block;
+}
+
+.chartChevron.down {
+  transform: rotate(45deg);
+  margin-top: -4px;
+}
+
+.chartChevron.up {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+.chartSettingsDropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 280px;
+  z-index: 50;
+  padding: 0;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+}
+
+.chartSettingsBlock {
+  padding: 10px 0;
+}
+
+.chartSettingsTitle {
+  padding: 4px 16px 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chartSettingsTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartCrown {
+  width: 14px;
+  height: 10px;
+  opacity: 0.45;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 75%, 20% 100%, 0% 40%);
+}
+
+.chartSettingsRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+  text-align: left;
+}
+
+.chartSettingsRow:hover {
+  background: #f5f7fa;
+}
+
+.chartCheck {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.chartSettingsDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+.chartWrap {
+  display: flex;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 10px 6px;
+  position: relative;
+  background: #fff;
+  overflow: visible;
+}
+
+.chartYAxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 4px 0 22px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  min-width: 40px;
+}
+
+.chartPlot {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartPlot svg {
+  display: block;
+  width: 100%;
+  height: clamp(110px, 22vh, 180px);
+  flex: 0 0 auto;
+}
+
+.line {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.currentLine {
+  stroke: #2563eb;
+}
+
+.prevLine {
+  stroke: #a855f7;
+  stroke-dasharray: 4 4;
+  opacity: 0.85;
+}
+
+.chartXAxis {
+  display: flex;
+  justify-content: space-between;
+  gap: 1px;
+  font-size: 9px;
+  color: var(--text-secondary);
+  padding: 2px 0 0;
+}
+
+.chartXAxis span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.chartXAxis span.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.chartXAxis small {
+  font-size: 9px;
+  opacity: 0.85;
+}
+
+.chartCompareTooltip {
+  position: absolute;
+  z-index: 20;
+  min-width: 220px;
+  max-width: min(280px, 90vw);
+  background: #1e2d44;
+  color: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.28);
+  pointer-events: none;
+}
+
+.chartCompareHead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.chartCompareRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.chartCompareRow:last-child {
+  margin-bottom: 0;
+}
+
+.chartCompareRow.muted {
+  opacity: 0.92;
+  color: #cbd5e1;
+}
+
+.chartDotCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot.blue {
+  background: #3b82f6;
+}
+
+.dot.purple {
+  background: #a855f7;
+}
+
+.chartCompareRow em {
+  font-style: normal;
+  margin-left: 4px;
+}
+
+.chartCompareRow em.down {
+  color: #f87171;
+}
+
+.chartCompareRow em.up {
+  color: #86efac;
+}
+
+.chartFooter {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chartRangeSelect {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.chartSummary {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.chartSummary strong {
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.chartDelta {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.chartSummary em {
+  color: var(--text-secondary);
+  font-style: normal;
+  font-size: 14px;
+}
+
+.communicationsSection {
+  padding: 18px 20px;
+}
+
+.communicationsSection h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dashboardBottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.commColumn {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px 18px;
+  min-height: 120px;
+}
+
+.commColumn h4 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.commList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.commList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.commList strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+@media (max-width: 1100px) {
+  .headerTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .headerRight {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .megaMenu {
+    left: 0;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboardBottom {
+    grid-template-columns: 1fr;
+  }
+}

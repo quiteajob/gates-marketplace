@@ -1,0 +1,97 @@
+.accessPage {
+  min-height: 100vh;
+  background: #f1f2f4;
+  display: grid;
+  grid-template-rows: 64px 1fr auto;
+}
+
+.accessHeader {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #123e86;
+}
+
+.accessCenter {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.accessCenter .loginFormWrap {
+  padding: 0;
+}
+
+.accessCenter .loginFormCard {
+  width: 360px;
+  border: 1px solid #e4e7ec;
+  box-shadow: none;
+  border-radius: 18px;
+  padding: 26px 24px;
+}
+
+.accessCenter .loginPanelMark {
+  font-size: 22px;
+  color: var(--primary);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.accessCenter .loginFormCard h2 {
+  margin: 0 0 8px;
+  font-size: 40px;
+  line-height: 1.08;
+}
+
+.accessCenter .loginHint {
+  color: #4b5563;
+  font-size: 14px;
+  margin: 0 0 14px;
+}
+
+.accessCenter .loginFormCard input {
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  border: 2px solid #2b6fff;
+  padding: 0 12px;
+  margin-bottom: 12px;
+}
+
+.accessCenter .loginFormCard button {
+  width: 100%;
+  height: 46px;
+  border: 0;
+  border-radius: 12px;
+  background: #1f62e9;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.accessCenter .loginLinks {
+  margin-top: 12px;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.accessCenter .loginLinks a {
+  font-size: 14px;
+  color: #1f62e9;
+}
+
+.accessFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 22px;
+  padding: 14px 24px 18px;
+}
+
+.accessFooter a {
+  color: #4f658f;
+  font-size: 13px;
+}

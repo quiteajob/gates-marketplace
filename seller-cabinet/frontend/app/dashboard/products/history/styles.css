@@ -1,0 +1,145 @@
+.updateHistoryPage {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  padding-bottom: 56px;
+}
+
+.updateHistoryHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.updateHistoryTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.updateHistoryRefreshBtn {
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid #c7dbf7;
+  border-radius: 10px;
+  background: #e8f1fe;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.updateHistoryRefreshBtn:hover {
+  background: #dce8f8;
+}
+
+.updateHistoryTableWrap {
+  padding: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.updateHistoryTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.updateHistoryTable thead th {
+  text-align: left;
+  padding: 14px 16px;
+  background: #e8f1fe;
+  border-bottom: 1px solid #c7dbf7;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.updateHistoryEmptyRow td {
+  padding: 16px;
+  border: 0;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.updateHistoryEmptyShell {
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f0f7ff 0%, #e8f2fc 100%);
+  border: 1px solid #c7dbf7;
+  overflow: hidden;
+}
+
+.updateHistoryEmpty {
+  padding: 56px 24px 64px;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.updateHistoryEmptyIcon {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 16px;
+  opacity: 0.85;
+}
+
+.updateHistoryEmptyTitle {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.updateHistoryEmptySub {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.updateHistoryFooter {
+  margin-top: 32px;
+}
+
+.updateHistoryFooter p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.updateHistoryFab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 0;
+  background: #1e3a5f;
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  z-index: 100;
+}
+
+.updateHistoryFab:hover {
+  background: #152a45;
+}
+
+@media (max-width: 700px) {
+  .updateHistoryHead {
+    flex-direction: column;
+  }
+
+  .updateHistoryRefreshBtn {
+    width: 100%;
+  }
+}
