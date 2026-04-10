@@ -14,3 +14,7 @@ cd marketplace/frontend   # или seller-cabinet/frontend
 npm install
 npm run dev
 ```
+
+## Демо на сервере (SSH, IP + порт)
+
+См. **[DEMO_HOST.md](./DEMO_HOST.md)** — установка Node, `npm run build`, `start:host`, фаервол и при необходимости PM2.
