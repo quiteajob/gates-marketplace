@@ -1,11 +1,13 @@
-# Структура проекта (frontend)
+# Структура проекта (marketplace/frontend)
 
 Короткий обзор дерева каталогов и назначения файлов **Next.js (App Router)** приложения маркетплейса AvtoVorota.
+
+Расположение в монорепозитории: `marketplace/frontend/`.
 
 > Папка `.next/` создаётся при `npm run build` / `npm run dev` и в документ не входит.
 
 ```
-frontend/
+marketplace/frontend/
 ├── app/                          # Маршруты и UI страниц (App Router)
 │   ├── layout.tsx                # Корневой layout: шапка, подвал, metadata сайта
 │   ├── page.tsx                  # Главная страница
@@ -46,7 +48,7 @@ frontend/
 │
 ├── package.json                  # Зависимости и скрипты npm (dev, build, lint)
 ├── package-lock.json             # Фиксация версий зависимостей
-├── tsconfig.json                 # Настройки TypeScript (пути @/* → корень frontend)
+├── tsconfig.json                 # Настройки TypeScript (пути @/* → корень приложения)
 ├── next.config.ts                # Конфигурация Next.js
 ├── next-env.d.ts                 # Типы Next.js (автогенерация/референсы)
 ├── postcss.config.mjs            # PostCSS (Tailwind v4)
@@ -69,7 +71,7 @@ frontend/
 ## Зависимости от окружения
 
 - **Node.js** и **npm** для установки пакетов и запуска.
-- Переменные окружения (`.env`) при подключении backend можно добавить в корень `frontend`; сейчас API не задействованы, кроме заглушек в `LoginModal`.
+- Переменные окружения (`.env`) при подключении backend можно добавить в корень `marketplace/frontend`; сейчас API не задействованы, кроме заглушек в `LoginModal`.
 
 ---
 
