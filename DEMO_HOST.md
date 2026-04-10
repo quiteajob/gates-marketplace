@@ -106,13 +106,13 @@ npm run dev:host
 
 Next.js **не** является набором файлов для «DocumentRoot» как у PHP-сайта: нужен **запущенный Node** и **обратный прокси** (Nginx или Apache), который по имени домена отдаёт трафик на `http://127.0.0.1:3000`.
 
-### Шаг 1 — сохранить старый сайт и подставить репозиторий в то же имя папки
+### Шаг 1 — удалить старую демо-папку и клонировать репозиторий под тем же именем
 
-Если панель/домен привязаны к каталогу `~/avorota.na4u.ru`, удобно клонировать **gates-marketplace** именно туда (содержимое станет корнем репо, а витрина — в `marketplace/frontend`):
+Если панель/домен привязаны к каталогу `~/avorota.na4u.ru`, старое содержимое можно **полностью удалить** и клонировать **gates-marketplace** именно в `avorota.na4u.ru` (корень репозитория; витрина — в `marketplace/frontend`):
 
 ```bash
 cd ~
-mv avorota.na4u.ru "avorota.na4u.ru.backup-$(date +%Y%m%d)"
+rm -rf avorota.na4u.ru
 git clone https://github.com/quiteajob/gates-marketplace.git avorota.na4u.ru
 cd avorota.na4u.ru/marketplace/frontend
 source ~/.nvm/nvm.sh
