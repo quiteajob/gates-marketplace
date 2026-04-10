@@ -141,17 +141,23 @@ pm2 start npm --name gates-vitrina -- run start:proxy
 pm2 save
 ```
 
-### Шаг 2 — Nginx
+### Шаг 2 — Обратный прокси на Node (порт 3000)
 
-Пример готового сервера — файл в репозитории: [`deploy/nginx-avorota-demo.conf.example`](deploy/nginx-avorota-demo.conf.example). Его нужно подключить в вашу установку Nginx (или адаптировать в панели хостинга: «проксирование на порт 3000»).
+**Важно:** если Apache/Nginx отдаёт **файлы** из `~/avorota.na4u.ru`, вы получите **403 Forbidden** — в корне нет классического `index.html`, только репозиторий. Нужно **проксирование** на `http://127.0.0.1:3000`, где крутится `npm run start:proxy` (или PM2).
 
-Проверка и перезагрузка на своём VPS:
+**Nginx:** пример [`deploy/nginx-avorota-demo.conf.example`](deploy/nginx-avorota-demo.conf.example), затем `sudo nginx -t && sudo systemctl reload nginx`.
+
+**Apache 2.4 (Debian):** пример [`deploy/apache-avorota-demo.conf.example`](deploy/apache-avorota-demo.conf.example). Кратко:
 
 ```bash
-sudo nginx -t && sudo systemctl reload nginx
+sudo a2enmod proxy proxy_http headers
+sudo apache2ctl configtest
+sudo systemctl reload apache2
 ```
 
-Если **нет root** и Nginx настраивает только техподдержка — пришлите им: «нужен reverse proxy с `avorota.na4u.ru` на `http://127.0.0.1:3000` для Node-приложения».
+Подключите VirtualHost из примера как отдельный сайт и **отключите** старый vhost с `DocumentRoot` на эту папку.
+
+Если **нет root** — в панели хостинга найдите «прокси / Node / приложение на порту» или напишите в поддержку: *reverse proxy `avorota.na4u.ru` → `http://127.0.0.1:3000`*.
 
 ### Шаг 3 — DNS
 

@@ -1,0 +1,34 @@
+# Apache 2.4: отдать avorota.na4u.ru с Node.js (Next) на 127.0.0.1:3000
+#
+# 1) Включить модули (один раз):
+#    sudo a2enmod proxy proxy_http headers
+#
+# 2) Сохранить этот фрагмент как отдельный файл в sites-available, например:
+#    /etc/apache2/sites-available/avorota-na4u-proxy.conf
+#
+# 3) Отключить или не использовать старый vhost, который указывает DocumentRoot
+#    на ~/avorota.na4u.ru (иначе снова будет 403 или статика).
+#
+# 4) Включить сайт и перезапустить Apache:
+#    sudo a2ensite avorota-na4u-proxy
+#    sudo apache2ctl configtest
+#    sudo systemctl reload apache2
+#
+# Next должен быть запущен: npm run start:proxy (или PM2) в marketplace/frontend
+
+<VirtualHost *:80>
+    ServerName avorota.na4u.ru
+    ServerAlias www.avorota.na4u.ru
+
+    ProxyPreserveHost On
+    RequestHeader set X-Forwarded-Proto "http"
+
+    ProxyPass / http://127.0.0.1:3000/
+    ProxyPassReverse / http://127.0.0.1:3000/
+
+    # WebSocket (если понадобится dev/HMR — для production next start обычно не критично)
+    # RewriteEngine on
+    # RewriteCond %{HTTP:Upgrade} websocket [NC]
+    # RewriteCond %{HTTP:Connection} upgrade [NC]
+    # RewriteRule ^/?(.*) ws://127.0.0.1:3000/$1 [P,L]
+</VirtualHost>
