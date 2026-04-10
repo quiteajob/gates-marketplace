@@ -174,12 +174,18 @@ sudo systemctl reload apache2
 
 Главное из их модели:
 
-1. Сайт в панели создаётся с конфигурацией **Node.js**; статика может лежать в `sitename.ru/www`, код — обычно в `sitename.ru/app` (у вас можно указать **APP_PATH** = каталог с `package.json`, т.е. `.../marketplace/frontend`).
-2. Приложение **обязано слушать `APP_IP` и `APP_PORT`**, которые передаёт хостинг (часто это адреса вида `127.0.4.x`, а не `127.0.0.1` — из-за этого «не открывается» и странные `netstat`).
-3. В этом репозитории **`npm start`** запускает `scripts/netangels-start.cjs`: передаёт в `next start` именно **`$APP_IP`** и **`$APP_PORT`** (если переменных нет — для локальной проверки используются `0.0.0.0` и `3000`).
-4. Не держите второй ручной `next start` в SSH, если в панели уже запущен тот же сайт — будет **порт занят**.
-5. После деплоя перезапуск: **`touch reload`** (см. раздел в их статье; файл обычно в корне аккаунта или каталога сайта). Логи: `~/sitename.ru/log/node-runlog/current` (путь может совпадать с вашим доменом).
-6. Сборка по SSH: `cd .../marketplace/frontend`, `npm ci`, `npm run build`, затем перезапуск через панель или `touch reload`.
+1. Сайт в панели — конфигурация **Node.js**. В статье по Next файлы кладут в **`sitename.ru/app`**; у монорепо удобнее **APP_PATH** в панели = каталог с `package.json`:  
+   **`/home/c501126/avorota.na4u.ru/marketplace/frontend`** (путь уточните через `pwd`).
+2. **Обязательный шаг из их инструкции по Next.js:** каталог **`www` не должен быть «просто пустой папкой»**. Нужно, чтобы **`www` указывал на `public`** приложения (статика Next). Из корня сайта (`cd ~/avorota.na4u.ru`):  
+   `rm -rf www`  
+   `ln -s ./marketplace/frontend/public www`  
+   Без этого Apache часто отдаёт **403 Forbidden** на порту 80.
+3. Приложение **слушает `APP_IP` и `APP_PORT`** с панели. В репозитории **`npm start`** = `scripts/netangels-start.cjs` (читает эти переменные; локально fallback `0.0.0.0:3000`).
+4. В панели в **Node.js**: допишите **PATH** с `.../marketplace/frontend/node_modules/.bin/` (как в их скриншотах); в **APP_PATH** уберите лишнее вроде `hello.js`, оставьте только путь к каталогу с `package.json`.
+5. По SSH: `cd .../marketplace/frontend` → `npm ci` → `npm run build`. Потом в панели **«Перезапустить Node.js»** или `touch reload`. Логи ошибок: **`~/avorota.na4u.ru/log/node-runlog/current`** (путь вида `~/домен/log/...`).
+6. Не запускайте второй `next start` вручную, если сайт уже крутится из панели — **порт занят**.
+
+Если всё ещё **403** или **502**: `tail -50 ~/avorota.na4u.ru/log/node-runlog/current` и тикет в поддержку NetAngels с этим фрагментом.
 
 ## Замечания по безопасности
 
