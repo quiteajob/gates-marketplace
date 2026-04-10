@@ -8,6 +8,7 @@
 - Нужен **полный** `git clone` репозитория (есть папки `app/`, `lib/`, `components/`).
 - Если на сервере уже есть **nvm**, достаточно `source ~/.nvm/nvm.sh` перед `npm` (отдельно NodeSource ставить не нужно).
 - Скрипт **`npm run build`** вызывает **`next build --webpack`**. На части хостингов Turbopack по умолчанию падает с `Cannot assign requested address (os error 99)` при обработке CSS — Webpack этого не делает. Локально при желании Turbopack: `npm run build:turbo`.
+- Карточки товаров **`/catalog/[id]`** не пререндерятся сотнями при сборке (иначе на слабом VPS долго «висит» шаг **Generating static pages (0/1024)**).
 
 ## Что понадобится
 

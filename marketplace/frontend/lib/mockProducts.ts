@@ -48,13 +48,6 @@ function buildProduct(id: number): MockProduct {
 
 const cache = new Map<string, MockProduct>();
 
-/** ID для статической сборки (1–999 совпадает с getProductById). */
-export function getAllStaticProductParams(): { productId: string }[] {
-  return Array.from({ length: 999 }, (_, i) => ({
-    productId: String(i + 1),
-  }));
-}
-
 export function getProductById(rawId: string): MockProduct | null {
   const id = String(rawId).trim();
   if (!/^\d+$/.test(id)) return null;

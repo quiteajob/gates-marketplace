@@ -4,15 +4,14 @@ import {
   getBrandPageData,
   getBrandSlugFromDisplayName,
 } from "@/lib/brands";
-import { getAllStaticProductParams, getProductById } from "@/lib/mockProducts";
+import { getProductById } from "@/lib/mockProducts";
 
 type PageProps = {
   params: Promise<{ productId: string }>;
 };
 
-export function generateStaticParams() {
-  return getAllStaticProductParams();
-}
+/** Без generateStaticParams: не пререндерим сотни карточек при build (на слабом VPS сборка «висит» на 0/1024). Страницы по запросу. */
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: PageProps) {
   const { productId } = await params;
