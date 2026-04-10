@@ -102,6 +102,58 @@ npm run dev:host
 
 Тот же порт **3000**, горячая перезагрузка.
 
+## 8. Демо на своём домене (вместо старой папки `avorota.na4u.ru`)
+
+Next.js **не** является набором файлов для «DocumentRoot» как у PHP-сайта: нужен **запущенный Node** и **обратный прокси** (Nginx или Apache), который по имени домена отдаёт трафик на `http://127.0.0.1:3000`.
+
+### Шаг 1 — сохранить старый сайт и подставить репозиторий в то же имя папки
+
+Если панель/домен привязаны к каталогу `~/avorota.na4u.ru`, удобно клонировать **gates-marketplace** именно туда (содержимое станет корнем репо, а витрина — в `marketplace/frontend`):
+
+```bash
+cd ~
+mv avorota.na4u.ru "avorota.na4u.ru.backup-$(date +%Y%m%d)"
+git clone https://github.com/quiteajob/gates-marketplace.git avorota.na4u.ru
+cd avorota.na4u.ru/marketplace/frontend
+source ~/.nvm/nvm.sh
+npm ci
+npm run build
+```
+
+Запуск **за Nginx** (слушать только localhost, наружу — порт 80/443 у веб-сервера):
+
+```bash
+npm run start:proxy
+```
+
+Или через PM2:
+
+```bash
+pm2 start npm --name gates-vitrina -- run start:proxy
+pm2 save
+```
+
+### Шаг 2 — Nginx
+
+Пример готового сервера — файл в репозитории: [`deploy/nginx-avorota-demo.conf.example`](deploy/nginx-avorota-demo.conf.example). Его нужно подключить в вашу установку Nginx (или адаптировать в панели хостинга: «проксирование на порт 3000»).
+
+Проверка и перезагрузка на своём VPS:
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Если **нет root** и Nginx настраивает только техподдержка — пришлите им: «нужен reverse proxy с `avorota.na4u.ru` на `http://127.0.0.1:3000` для Node-приложения».
+
+### Шаг 3 — DNS
+
+У регистратора домена **A-запись** `avorota` → IP сервера (скорее уже так и было).
+
+### Важно
+
+- Папка `avorota.na4u.ru` после клона содержит **весь монорепозиторий**; собирать и запускать нужно из **`avorota.na4u.ru/marketplace/frontend`**.
+- Без прокси домен будет либо показывать старый статический сайт, либо ошибку панели — **обязателен** прокси на порт 3000 (или на тот порт, где вы подняли `next start`).
+
 ## Замечания по безопасности
 
 - Это **демо**: не кладите секреты в `.env` на сервер без необходимости, не используйте как прод без HTTPS и нормального хостинга.

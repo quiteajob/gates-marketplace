@@ -17,4 +17,4 @@ npm run dev
 
 ## Демо на сервере (SSH, IP + порт)
 
-См. **[DEMO_HOST.md](./DEMO_HOST.md)** — установка Node, `npm run build`, `start:host`, фаервол и при необходимости PM2.
+См. **[DEMO_HOST.md](./DEMO_HOST.md)** — установка Node, `npm run build`, `start:host`, фаервол, PM2 и **привязка домена** (раздел 8). Пример Nginx: [`deploy/nginx-avorota-demo.conf.example`](deploy/nginx-avorota-demo.conf.example).
