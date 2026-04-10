@@ -2,14 +2,15 @@ import { ProductCatalogSection } from "@/components/ProductCatalogSection";
 
 export const dynamic = "force-dynamic";
 
-export default function CatalogPage({
+export default async function CatalogPage({
   searchParams,
 }: {
-  searchParams?: { page?: string; category?: string };
+  searchParams?: Promise<{ page?: string; category?: string }>;
 }) {
-  const raw = Number(searchParams?.page ?? "1");
+  const sp = (await searchParams) ?? {};
+  const raw = Number(sp.page ?? "1");
   const page = Number.isFinite(raw) && raw > 0 ? Math.min(raw, 3) : 1;
-  const category = searchParams?.category ?? null;
+  const category = sp.category ?? null;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
